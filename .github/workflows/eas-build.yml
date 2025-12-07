@@ -1,0 +1,33 @@
+name: EAS CI Build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Login to EAS (non-interactive)
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
+        run: |
+          eas whoami || (echo "$EAS_TOKEN" | eas login --non-interactive)
+
+      - name: Build Android
+        run: eas build --platform android --profile production --non-interactive
