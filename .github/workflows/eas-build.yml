@@ -1,4 +1,4 @@
-name: EAS CI Build
+name: EAS CI Build (debug)
 
 on:
   push:
@@ -24,12 +24,16 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Verify EAS auth (uses EAS_ACCESS_TOKEN env)
+      - name: Debug - show EAS version and token presence (no token printed)
         env:
           EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
         run: |
-          echo "Using EAS token from secrets"
-          eas whoami
+          echo "eas version:"
+          eas --version || true
+          echo "Node sees EAS_TOKEN length (0 = missing):"
+          node -e "console.log(process.env.EAS_TOKEN ? process.env.EAS_TOKEN.length : 0)"
+          echo "Now checking eas whoami (should show username if token is valid):"
+          eas whoami || true
 
       - name: Build Android
         env:
