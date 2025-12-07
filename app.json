@@ -27,6 +27,12 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "06544cb1-e92c-46ce-a6ff-159962bf0c0a"
+      }
+    },
+    "owner": "viharim"
   }
 }
