@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,11 +24,14 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Login to EAS (non-interactive)
+      - name: Verify EAS auth (uses EAS_ACCESS_TOKEN env)
         env:
           EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
         run: |
-          eas whoami || (echo "$EAS_TOKEN" | eas login --non-interactive)
+          echo "Using EAS token from secrets"
+          eas whoami
 
       - name: Build Android
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
         run: eas build --platform android --profile production --non-interactive
