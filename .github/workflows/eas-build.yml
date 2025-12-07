@@ -1,4 +1,4 @@
-name: EAS CI Build (debug)
+name: EAS CI Build (fixed)
 
 on:
   push:
@@ -27,15 +27,20 @@ jobs:
       - name: Debug - show EAS version and token presence (no token printed)
         env:
           EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
         run: |
           echo "eas version:"
           eas --version || true
           echo "Node sees EAS_TOKEN length (0 = missing):"
           node -e "console.log(process.env.EAS_TOKEN ? process.env.EAS_TOKEN.length : 0)"
+          echo "Node sees EXPO_TOKEN length (0 = missing):"
+          node -e "console.log(process.env.EXPO_TOKEN ? process.env.EXPO_TOKEN.length : 0)"
           echo "Now checking eas whoami (should show username if token is valid):"
           eas whoami || true
 
       - name: Build Android
         env:
           EAS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive
+          EXPO_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
+        run: |
+          eas build --platform android --profile production --non-interactive
