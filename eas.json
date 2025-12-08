@@ -5,10 +5,19 @@
   },
   "build": {
     "production": {
-      "env": {
-        "NODE_ENV": "production"
-      },
-      "releaseChannel": "production"
+      "env": { "NODE_ENV": "production" }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "internal": {
+      "distribution": "internal",
+      "buildType": "apk",
+      "env": { "NODE_ENV": "development" }
     }
   }
 }
