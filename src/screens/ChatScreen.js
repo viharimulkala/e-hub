@@ -24,7 +24,7 @@ import { LinearGradient } from "expo-linear-gradient";
 // ------------------ CONFIG ------------------
 // NOTE: If you're testing on Expo on a physical device, set BASE_URL to your PC LAN IP like:
 // const BASE_URL = "http://192.168.1.47:5000/chat";
-const BASE_URL = "http://10.126.193.94:5000/chat"; // <- update to your LAN IP if needed
+const BASE_URL = "https://ehub-backend-itr3.onrender.com""; 
 
 // Local image: adjust path as necessary. Assuming project structure: /e-hub/assets/Logo.jpg and this file is in src/screens
 // If your logo sits elsewhere, change the path.
