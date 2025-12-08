@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.viharim.ehub"      
+      "bundleIdentifier": "com.viharim.ehub"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +22,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.viharim.ehub"               
+      "package": "com.viharim.ehub"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,7 +33,8 @@
     "extra": {
       "eas": {
         "projectId": "06544cb1-e92c-46ce-a6ff-159962bf0c0a"
-      }
+      },
+      "apiBase": "https://ehub-backend-itr3.onrender.com"
     },
     "owner": "viharim"
   }
