@@ -23,11 +23,10 @@ import { LinearGradient } from "expo-linear-gradient";
 
 // ------------------ CONFIG ------------------
 // NOTE: If you're testing on Expo on a physical device, set BASE_URL to your PC LAN IP like:
-// const BASE_URL = "http://192.168.1.47:5000/chat";
-const BASE_URL = "https://ehub-backend-itr3.onrender.com""; 
+// const BASE_URL = "http://192.168.1.47:5000";
+const BASE_URL = "https://ehub-backend-itr3.onrender.com";
 
 // Local image: adjust path as necessary. Assuming project structure: /e-hub/assets/Logo.jpg and this file is in src/screens
-// If your logo sits elsewhere, change the path.
 const UPLOADED_IMAGE = require("../../assets/Logo.jpg");
 
 // ------------------ HELPERS ------------------
@@ -83,7 +82,6 @@ const rules = {
     const mono = Platform.select({ ios: "Menlo", android: "monospace", default: "monospace" });
     return (
       <ScrollView
-        key={Math.random().toString(36).slice(2)}
         horizontal
         showsHorizontalScrollIndicator
         style={{ marginTop: 8, marginBottom: 8 }}
@@ -292,7 +290,7 @@ export default function ChatScreenMarkdownGreetings() {
 
   /**
    * sendText: sends the user prompt to backend and handles:
-   *  - text-only reply (res.data.reply / res.data.message)
+   *  - text-only reply (res.data.bot / res.data.reply / res.data.message)
    *  - imageUrl (res.data.imageUrl)
    *  - images array (res.data.images)
    *  - base64 image (res.data.imageBase64)
@@ -300,7 +298,7 @@ export default function ChatScreenMarkdownGreetings() {
    * When an image is present we convert it into markdown image syntax so the Markdown renderer will display it.
    *
    * Backend contract (recommended):
-   *  - { reply: "text", imageUrl: "https://...", images: ["..."], imageBase64: "..." }
+   *  - { bot: "text", reply: "text", imageUrl: "https://...", images: ["..."], imageBase64: "..." }
    */
   const sendText = async (text) => {
     const txt = (text || "").trim();
@@ -318,11 +316,11 @@ export default function ChatScreenMarkdownGreetings() {
 
     try {
       setIsTyping(true);
-      const res = await axios.post(BASE_URL, { message: txt }, { timeout: 20000 }); // longer timeout for image gen
+      const res = await axios.post(`${BASE_URL}/chat`, { message: txt }, { timeout: 20000 }); // longer timeout for image gen
       const data = res?.data ?? {};
 
       // prefer explicit text fields
-      let replyText = data?.reply ?? data?.message ?? "";
+      let replyText = data?.bot ?? data?.reply ?? data?.message ?? "";
       let markdownParts = [];
 
       // If backend returned images array (URLs)
@@ -550,7 +548,7 @@ const styles = StyleSheet.create({
   greetingCard: {
     margin: 16,
     padding: 12,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#WHITE",
     borderRadius: 14,
     borderWidth: 1,
     borderColor: "#F0E9FF",
