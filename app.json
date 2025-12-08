@@ -1,41 +1,40 @@
 {
-  "expo": {
-    "name": "e-hub",
-    "slug": "e-hub",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.viharim.ehub"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true,
-      "package": "com.viharim.ehub"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font"
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "06544cb1-e92c-46ce-a6ff-159962bf0c0a"
-      },
-      "apiBase": "https://ehub-backend-itr3.onrender.com"
-    },
-    "owner": "viharim"
+  "name": "e-hub",
+  "version": "1.0.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "^51.0.9",
+    "expo-status-bar": "~1.13.1",
+    "react": "18.2.0",
+    "react-native": "0.74.1",
+
+    "axios": "^1.6.8",
+    "react-native-markdown-display": "^7.0.2",
+    "expo-linear-gradient": "~13.0.2",
+    "react-native-safe-area-context": "4.10.4",
+    "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "^1.19.1",
+
+    "firebase": "^12.6.0",
+
+    "react-native-gesture-handler": "~2.16.2",
+    "react-native-reanimated": "~3.7.2",
+    "react-native-screens": "~3.31.1",
+    "react-native-svg": "15.2.0",
+
+    "@react-navigation/native": "^6.1.10",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@react-navigation/bottom-tabs": "^6.5.8",
+    "@react-navigation/drawer": "^6.5.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2"
   }
 }
